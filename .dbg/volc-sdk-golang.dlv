@@ -1,3 +1,4 @@
-b example/rtc/v20230801_test.Test_GetRoomOnlineUsers
+b example/rtc/v20230801.GetRoomOnlineUsers
+# b example/rtc/v20230801.Test_GetRoomOnlineUsers
 
 g

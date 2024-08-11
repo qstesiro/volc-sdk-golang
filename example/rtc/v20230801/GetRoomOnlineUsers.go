@@ -1,21 +1,16 @@
 package rtc_v20230801_test
 
 import (
+	"bytes"
 	"context"
 	"encoding/json"
-	"testing"
+	"log"
 
-	// "github.com/volcengine/volc-sdk-golang/base"
 	"github.com/volcengine/volc-sdk-golang/service/rtc/v20230801"
 )
 
-func Test_GetRoomOnlineUsers(t *testing.T) {
+func GetRoomOnlineUsers() {
 	instance := rtc_v20230801.NewInstance()
-
-	// instance.SetCredential(base.Credentials{
-	// 	AccessKeyID:     "ak",
-	// 	SecretAccessKey: "sk",
-	// })
 
 	param := &rtc_v20230801.GetRoomOnlineUsersQuery{
 		AppID:  "66aeef78e091820121ab8847",
@@ -27,29 +22,31 @@ func Test_GetRoomOnlineUsers(t *testing.T) {
 	if err != nil {
 		if resp != nil && resp.ResponseMetadata.Error != nil {
 			errStr, _ := json.Marshal(resp.ResponseMetadata.Error)
-			t.Logf("statusCode: %d, error: %v", statusCode, string(errStr))
+			log.Printf("statusCode: %d, error: %v", statusCode, string(errStr))
 			// 网关返回的错误
 			if resp.ResponseMetadata.Error.CodeN != nil && *resp.ResponseMetadata.Error.CodeN != 0 {
 				switch *resp.ResponseMetadata.Error.CodeN {
 				// InvalidAccessKey
 				case 100009:
-					t.Logf("请求的AK不合法")
+					log.Printf("请求的AK不合法")
 				// SignatureDoesNotMatch
 				case 100010:
-					t.Logf("签名结果不正确")
+					log.Printf("签名结果不正确")
 				}
 			} else {
 				// 服务端返回的错误
 				switch resp.ResponseMetadata.Error.Code {
 				case "InvalidParameter":
-					t.Logf("请求的参数错误, 请根据具体Error中的Message提示调整参数")
+					log.Printf("请求的参数错误, 请根据具体Error中的Message提示调整参数")
 				}
 			}
 		} else {
-			t.Errorf("statusCode: %d, error: %v", statusCode, err)
+			log.Fatalf("statusCode: %d, error: %v", statusCode, err)
 		}
 	} else {
 		b, _ := json.Marshal(resp)
-		t.Logf("success %v", string(b))
+		v := bytes.Buffer{}
+		json.Indent(&v, b, "", "  ")
+		log.Printf("success %v", v.String())
 	}
 }
