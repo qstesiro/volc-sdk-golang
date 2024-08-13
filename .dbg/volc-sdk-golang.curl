@@ -1,0 +1,5 @@
+# 测试
+{
+    curl http://localhost:8080/ping
+    curl http://101.126.87.161:8080/ping
+}

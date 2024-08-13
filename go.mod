@@ -8,6 +8,7 @@ require (
 	github.com/avast/retry-go v3.0.0+incompatible
 	github.com/cenkalti/backoff/v4 v4.1.2
 	github.com/demdxx/gocast v1.2.0 // indirect
+	github.com/gin-gonic/gin v1.10.0 // indirect
 	github.com/go-kit/kit v0.12.0
 	github.com/gogo/protobuf v1.3.2
 	github.com/golang/protobuf v1.5.2
@@ -17,11 +18,11 @@ require (
 	github.com/klauspost/compress v1.15.9 // indirect
 	github.com/pierrec/lz4 v2.6.1+incompatible
 	github.com/pkg/errors v0.9.1
-	github.com/stretchr/testify v1.7.0
-	golang.org/x/crypto v0.11.0
+	github.com/stretchr/testify v1.9.0
+	golang.org/x/crypto v0.23.0
 	golang.org/x/exp v0.0.0-20200224162631-6cc2880d07d6
-	golang.org/x/net v0.12.0
-	google.golang.org/protobuf v1.28.0
+	golang.org/x/net v0.25.0
+	google.golang.org/protobuf v1.34.1
 	gopkg.in/natefinch/lumberjack.v2 v2.0.0
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 )
