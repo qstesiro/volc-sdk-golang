@@ -2,21 +2,21 @@ package main
 
 import (
 	"bytes"
-	"context"
 	"encoding/json"
 	"log"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
 
-	// "github.com/volcengine/volc-sdk-golang/example/rtc/v20231101"
-	"github.com/volcengine/volc-sdk-golang/service/rtc/v20230801"
-	"github.com/volcengine/volc-sdk-golang/service/rtc/v20231101"
+	"github.com/volcengine/volc-sdk-golang/example/rtc/v20230801"
+	"github.com/volcengine/volc-sdk-golang/example/rtc/v20231101"
 )
 
+// 不同类型的单元测试
+// https://stackoverflow.com/questions/19998250/proper-package-naming-for-testing-with-the-go-language
 func main() {
-	GetRoomOnlineUsers()
-	ListDetectionTasks()
+	rtc_v20230801.GetRoomOnlineUsers()
+	rtc_v20231101.ListDetectionTasks()
 	// server()
 }
 
@@ -40,39 +40,4 @@ func PrintCallback(m interface{}) {
 	v := bytes.Buffer{}
 	json.Indent(&v, b, "", "  ")
 	log.Printf("success %v", v.String())
-}
-
-func GetRoomOnlineUsers() {
-	instance := rtc_v20230801.NewInstance()
-	param := &rtc_v20230801.GetRoomOnlineUsersQuery{
-		AppID:  "66aeef78e091820121ab8847",
-		RoomID: "123",
-	}
-	resp, statusCode, err := instance.GetRoomOnlineUsers(context.Background(), param)
-	if err != nil {
-		log.Fatalf("error = %v\n", err)
-	}
-	PrintResponse(resp, statusCode)
-}
-
-func ListDetectionTasks() {
-	instance := rtc_v20231101.NewInstance()
-	userID := "123"
-	param := &rtc_v20231101.ListDetectionTaskQuery{
-		AppID:  "66aeef78e091820121ab8847",
-		RoomID: "123",
-		UserID: &userID,
-	}
-	resp, statusCode, err := instance.ListDetectionTask(context.Background(), param)
-	if err != nil {
-		log.Fatalf("error = %v\n", err)
-	}
-	PrintResponse(resp, statusCode)
-}
-
-func PrintResponse(r interface{}, code int) {
-	b, _ := json.Marshal(r)
-	v := bytes.Buffer{}
-	json.Indent(&v, b, "", "  ")
-	log.Printf("code = %d\n%v\n", code, v.String())
 }

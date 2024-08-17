@@ -1,4 +1,4 @@
-package rtc_v20231101_test
+package rtc_v20231101
 
 import (
 	"bytes"
