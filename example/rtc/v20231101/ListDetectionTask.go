@@ -1,4 +1,4 @@
-package rtc_v20230801_test
+package rtc_v20231101_test
 
 import (
 	"bytes"
@@ -6,23 +6,25 @@ import (
 	"encoding/json"
 	"log"
 
-	"github.com/volcengine/volc-sdk-golang/service/rtc/v20230801"
+	"github.com/volcengine/volc-sdk-golang/service/rtc/v20231101"
 )
 
-func GetRoomOnlineUsers() {
-	instance := rtc_v20230801.NewInstance()
+func ListDetectionTasks() {
+	instance := rtc_v20231101.NewInstance()
 
-	param := &rtc_v20230801.GetRoomOnlineUsersQuery{
+	userID := "123"
+	param := &rtc_v20231101.ListDetectionTaskQuery{
 		AppID:  "66aeef78e091820121ab8847",
 		RoomID: "123",
+		UserID: &userID,
 	}
 
-	resp, statusCode, err := instance.GetRoomOnlineUsers(context.Background(), param)
+	resp, statusCode, err := instance.ListDetectionTask(context.Background(), param)
 
 	if err != nil {
 		if resp != nil && resp.ResponseMetadata.Error != nil {
 			errStr, _ := json.Marshal(resp.ResponseMetadata.Error)
-			log.Printf("statusCode: %d, error: %v", statusCode, string(errStr))
+			log.Printf("statusCode: %d, error: %v\n", statusCode, string(errStr))
 			// 网关返回的错误
 			if resp.ResponseMetadata.Error.CodeN != nil && *resp.ResponseMetadata.Error.CodeN != 0 {
 				switch *resp.ResponseMetadata.Error.CodeN {
