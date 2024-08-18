@@ -6,7 +6,7 @@
 
 # rtc
 {
-    curl http://localhost:8080/rtc/room \
+    curl http://localhost:8080/rtc \
          -H 'Content-Type: application/json' \
          -X POST \
          -d '{
@@ -17,7 +17,7 @@
                "ExtraInfo":"Your_ExtraInfo"
              }' | jq
 
-    curl http://101.126.87.161:8080/rtc/room \
+    curl http://101.126.87.161:8080/rtc \
          -H 'Content-Type: application/json' \
          -X POST \
          -d '{
