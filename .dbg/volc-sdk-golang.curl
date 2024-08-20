@@ -27,4 +27,15 @@
                "Timestamp": 1611736812853,
                "ExtraInfo":"Your_ExtraInfo"
              }' | jq
+
+    curl http://demo.qstesiro.top/rtc \
+         -H 'Content-Type: application/json' \
+         -X POST \
+         -d '{
+               "RoomId": "6992870232038591758",
+               "UserId": "4398491447867063",
+               "DeviceType": "android",
+               "Timestamp": 1611736812853,
+               "ExtraInfo":"Your_ExtraInfo"
+             }' | jq
 }
